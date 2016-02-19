@@ -9,6 +9,8 @@ nbproject
 
 # zend studio for eclipse project files
 .buildpath
+/error.log
+/access.log
 .project
 .settings
 
