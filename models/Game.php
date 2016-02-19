@@ -32,9 +32,10 @@ class Game extends \yii\db\ActiveRecord
     {
         return [
             [['gameNum', 'roundHash', 'randNum', 'winningTicket', 'winningPlayer', 'date'], 'required'],
-            [['gameNum', 'winningTicket', 'date'], 'integer'],
+            [['gameNum', 'winningTicket'], 'integer'],
+            ['date', 'date', 'format' => 'yyyy-mm-dd HH:mm:ss'],
             [['randNum'], 'number'],
-            [['roundHash'], 'string', 'max' => 32],
+            [['roundHash'], 'string', 'max' => 128],
             [['winningPlayer', 'user'], 'string', 'max' => 64]
         ];
     }
@@ -63,9 +64,7 @@ class Game extends \yii\db\ActiveRecord
             'randNum',
             'winningTicket',
             'winningPlayer',
-            'date' => function(Game $model){
-                return strtotime($model->date);
-            }
+            'date',
         ];
     }
 }
