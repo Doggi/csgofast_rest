@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\GameSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -90,5 +91,20 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * Lists all Game models.
+     * @return mixed
+     */
+    public function actionGame()
+    {
+        $searchModel = new GameSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('game', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }
